@@ -19,10 +19,26 @@
 #
 #   three files: main (with prompts), babysitter (where class is), and babysitter_spec. + Gemfile
 #   save time input as military based off of whether AM or PM is entered
+#   acceptable time range (5PM - 4AM) can be expressed as zero based range from 0 - 11
 #
 
 class Babysitter
   def initialize
+  end
+  def clock_in(time)
+    @clock_in_time = convert_to_military(time)
+  end
+  def clock_out(time)
+    @clock_out_time = convert_to_military(time)
+  end
+  def calculate_nightly_pay
+  end
+  private
+  def convert_to_military(time)
+    # time = '5 PM'
+    # separate hour from am/pm
+    #
+
   end
 end
 
