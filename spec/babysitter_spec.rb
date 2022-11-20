@@ -5,10 +5,26 @@ describe Babysitter do
   it 'can be initialized' do
     expect(subject).to be_an_instance_of(described_class)
   end
-  it 'calculates the babysitters nightly pay' do
-    subject.clock_in('5 PM')
-    subject.clock_out('7 PM')
-    expect(subject.calculate_nightly_pay).to eq "$24"
+  context 'if clock in and out before bedtime' do
+    it 'calculates the babysitters nightly pay accurately' do
+      subject.clock_in('5 PM')
+      subject.clock_out('7 PM')
+      expect(subject.calculate_nightly_pay).to eq "$24"
+    end
+  end
+  context 'if clock out after bed time' do
+    it 'calculates the babysitters nightly pay accurately' do
+      subject.clock_in('5 PM')
+      subject.clock_out('9 PM')
+      expect(subject.calculate_nightly_pay).to eq "$44"
+    end
+  end
+  context 'if clock out after midnight' do
+    it 'calculates the babysitters nightly pay accurately' do
+      subject.clock_in('5 PM')
+      subject.clock_out('1 AM')
+      expect(subject.calculate_nightly_pay).to eq "$84"
+    end
   end
   it 'only accepts a start time of 5 PM or later' do
     expect { 
