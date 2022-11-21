@@ -5,9 +5,9 @@ puts 'Welcome to your night of babysitting. Ready to clock in?'
 while !@clock_in_time_entered
   begin
     puts "Enter hour started:"
-    hour = gets.chomp
+    hour = gets.chomp.gsub(':00', '')
     puts "AM or PM?"
-    ampm = gets.chomp
+    ampm = gets.chomp.upcase.gsub('.', '')
     babysitter.clock_in("#{hour} #{ampm}")
     @clock_in_time_entered = true
   rescue ArgumentError => e
@@ -18,9 +18,9 @@ end
 while !@clock_out_time_entered
   begin
     puts "Enter hour ended:"
-    hour = gets.chomp
+    hour = gets.chomp.gsub(':00', '')
     puts "AM or PM?"
-    ampm = gets.chomp
+    ampm = gets.chomp.upcase.gsub('.', '')
     babysitter.clock_out("#{hour} #{ampm}")
     @clock_out_time_entered = true
   rescue ArgumentError => e
